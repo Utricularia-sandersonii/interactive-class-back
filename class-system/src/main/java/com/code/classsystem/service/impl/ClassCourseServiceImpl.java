@@ -7,14 +7,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.code.classsystem.util.DateUtils;
 import org.springframework.stereotype.Service;
 
-/**
- * <p>
- *  服务实现类
- * </p>
- *
- * @author coder
- * @since 2020-05-11
- */
+
 @Service
 public class ClassCourseServiceImpl extends ServiceImpl<ClassCourseMapper, ClassCourse> implements ClassCourseService {
 

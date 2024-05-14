@@ -23,14 +23,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- * 前端控制器
- * </p>
- *
- * @author coder
- * @since 2020-04-18
- */
+
 @RestController
 @RequestMapping("/notice")
 @Api(value = "通知接口", tags = "通知接口")

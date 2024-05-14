@@ -18,14 +18,7 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
-/**
- * <p>
- * 服务实现类
- * </p>
- *
- * @author coder
- * @since 2020-05-07
- */
+
 @Service
 public class HomeWorkServiceImpl extends ServiceImpl<HomeWorkMapper, HomeWork> implements HomeWorkService {
     @Autowired

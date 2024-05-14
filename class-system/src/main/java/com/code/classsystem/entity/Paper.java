@@ -5,14 +5,7 @@ import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author coder
- * @since 2020-04-18
- */
+
 public class Paper implements Serializable {
     @TableId(value = "id", type = IdType.UUID)
     private static final long serialVersionUID = 1L;

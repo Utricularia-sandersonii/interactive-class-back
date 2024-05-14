@@ -7,14 +7,7 @@ import com.baomidou.mybatisplus.enums.IdType;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author coder
- * @since 2020-05-11
- */
+
 public class Course implements Serializable {
 
     private static final long serialVersionUID = 1L;

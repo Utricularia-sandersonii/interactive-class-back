@@ -5,14 +5,7 @@ import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author coder
- * @since 2020-04-18
- */
+
 public class Notice implements Serializable {
 
     private static final long serialVersionUID = 1L;

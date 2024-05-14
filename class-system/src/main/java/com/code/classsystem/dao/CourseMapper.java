@@ -9,14 +9,7 @@ import com.code.classsystem.vo.TeacherCourseVo;
 
 import java.util.List;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author coder
- * @since 2020-04-18
- */
+
 public interface CourseMapper extends BaseMapper<Course> {
 
     List<CourseAndClass> mcourseInfo(String userId);

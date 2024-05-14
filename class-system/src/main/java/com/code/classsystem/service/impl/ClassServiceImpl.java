@@ -24,14 +24,7 @@ import java.sql.Wrapper;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>
- * 服务实现类
- * </p>
- *
- * @author coder
- * @since 2020-04-05
- */
+
 @Service
 public class ClassServiceImpl extends ServiceImpl<ClassMapper, Class> implements ClassService {
     @Autowired

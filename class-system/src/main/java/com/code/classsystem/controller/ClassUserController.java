@@ -25,14 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * <p>
- * 前端控制器
- * </p>
- *
- * @author coder
- * @since 2020-04-05
- */
+
 @RestController
 @RequestMapping("/classUser")
 @Api(value = "班级用户接口", tags = "班级用户接口")

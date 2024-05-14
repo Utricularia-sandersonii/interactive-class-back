@@ -16,14 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author coder
- * @since 2020-04-18
- */
+
 @RestController
 @RequestMapping("/paperQuestion")
 public class PaperQuestionController {

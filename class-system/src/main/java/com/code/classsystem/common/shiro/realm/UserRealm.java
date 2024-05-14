@@ -26,6 +26,7 @@ import org.springframework.util.StringUtils;
 
 @Component
 public class UserRealm extends AuthorizingRealm {
+
     @Autowired
     private UserService userService;
     private Logger logger = LoggerFactory.getLogger(UserRealm.class);
@@ -36,8 +37,10 @@ public class UserRealm extends AuthorizingRealm {
      * @param principalCollection
      * @return
      */
+
+//    获取用户权限返回一个授权信息
     @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+    public AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         String userId = ShiroUtils.getUserId();
         UserInfoVo userInfoVo = userService.getUserInfoById(userId);
         String roleCode = userInfoVo.getRoleCode();
@@ -59,15 +62,26 @@ public class UserRealm extends AuthorizingRealm {
         String userName = token.getUsername();
         User user = userService.getByUserAccount(userName);
 
+        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+
+
+
         if (user == null) {
             logger.error("用户名错误：{}", userName);
             throw new AuthenticationFailException(ErrorEnum.USER_NAME_ERROR.setMsg("用户名" + userName + "不存在"));
+        }
+
+        for (int i = 0; i < stackTraceElements.length; i++) {
+            if (stackTraceElements[i].getMethodName().equals("webLogin")||user.getRoleId()==1){
+                throw new AuthenticationFailException(ErrorEnum.USER_NAME_ERROR.setMsg("用户" + userName + "权限不足"));
+            }
         }
         String loginPassword = new String(token.getPassword());
         if (StringUtils.isEmpty(loginPassword) || !loginPassword.equals(user.getPassword())) {
             logger.error("登录密码错误：{}", token.getPassword());
             throw new AuthenticationFailException(ErrorEnum.USER_NAME_ERROR.setMsg("登录密码" + loginPassword + "错误"));
         }
+
         //用户登录成功后更新用户信
         updateLoginUser(user);
         ShiroUtils.setSessionAttribute("user", user);

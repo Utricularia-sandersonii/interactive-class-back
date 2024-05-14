@@ -8,14 +8,7 @@ import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
-/**
- * <p>
- *  服务类
- * </p>
- *
- * @author coder
- * @since 2020-04-05
- */
+
 public interface ClassService extends IService<Class> {
 
     /**

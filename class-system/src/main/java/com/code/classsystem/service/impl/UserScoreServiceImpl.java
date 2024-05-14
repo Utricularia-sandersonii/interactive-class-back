@@ -10,14 +10,7 @@ import com.code.core.util.DateUtils;
 import com.code.core.util.UUIDUtil;
 import org.springframework.stereotype.Service;
 
-/**
- * <p>
- *  服务实现类
- * </p>
- *
- * @author coder
- * @since 2020-05-07
- */
+
 @Service
 public class UserScoreServiceImpl extends ServiceImpl<UserScoreMapper, UserScore> implements UserScoreService {
 

@@ -7,14 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.io.Serializable;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author coder
- * @since 2020-04-05
- */
+
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
