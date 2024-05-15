@@ -10,14 +10,7 @@ import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
-/**
- * <p>
- *  服务类
- * </p>
- *
- * @author coder
- * @since 2020-04-18
- */
+
 public interface CourseService extends IService<Course> {
     void addCourse(CourseVo course);
 

@@ -2,14 +2,7 @@ package com.code.classsystem.entity;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author coder
- * @since 2020-05-07
- */
+
 public class UserScore implements Serializable {
 
     private static final long serialVersionUID = 1L;

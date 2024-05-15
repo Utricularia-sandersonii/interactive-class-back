@@ -6,14 +6,7 @@ import com.code.classsystem.vo.HomeWorkVo;
 
 import java.util.List;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author coder
- * @since 2020-05-07
- */
+
 public interface HomeWorkMapper extends BaseMapper<HomeWork> {
 
     List<HomeWorkVo> listPage(HomeWork homeWork);

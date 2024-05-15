@@ -9,14 +9,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author coder
- * @since 2020-04-05
- */
+
 public interface UserSignMapper extends BaseMapper<UserSign> {
     SignVo querySignInfo(UserSign userSign);
 

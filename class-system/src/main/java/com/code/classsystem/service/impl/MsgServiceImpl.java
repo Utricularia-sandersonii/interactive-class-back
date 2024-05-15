@@ -14,14 +14,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * <p>
- * 服务实现类
- * </p>
- *
- * @author coder
- * @since 2020-05-10
- */
+
 @Service
 public class MsgServiceImpl extends ServiceImpl<MsgMapper, Msg> implements MsgService {
 

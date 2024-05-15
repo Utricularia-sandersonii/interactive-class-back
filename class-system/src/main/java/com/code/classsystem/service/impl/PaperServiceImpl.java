@@ -19,14 +19,7 @@ import org.springframework.stereotype.Service;
 import java.text.DecimalFormat;
 import java.util.List;
 
-/**
- * <p>
- *  服务实现类
- * </p>
- *
- * @author coder
- * @since 2020-04-18
- */
+
 @Service
 public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements PaperService {
 

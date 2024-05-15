@@ -4,14 +4,7 @@ import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import java.io.Serializable;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author coder
- * @since 2020-04-05
- */
+
 public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;

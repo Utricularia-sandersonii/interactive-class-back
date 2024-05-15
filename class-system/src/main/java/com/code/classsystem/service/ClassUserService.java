@@ -9,14 +9,7 @@ import com.code.classsystem.vo.ClassStudentVo;
 
 import java.util.List;
 
-/**
- * <p>
- *  服务类
- * </p>
- *
- * @author coder
- * @since 2020-04-05
- */
+
 public interface ClassUserService extends IService<ClassUser> {
 
     void saveClassUser(String classId, String userId);

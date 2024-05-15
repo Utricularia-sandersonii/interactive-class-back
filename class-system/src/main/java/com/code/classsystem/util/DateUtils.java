@@ -12,7 +12,6 @@ import java.util.Locale;
 /**
  * 日期时间工具类
  *
- * @author Administrator
  */
 public class DateUtils {
 

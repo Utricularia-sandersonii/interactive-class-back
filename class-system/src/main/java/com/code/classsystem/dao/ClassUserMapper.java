@@ -10,14 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author coder
- * @since 2020-04-05
- */
+
 @Mapper
 public interface ClassUserMapper extends BaseMapper<ClassUser> {
 

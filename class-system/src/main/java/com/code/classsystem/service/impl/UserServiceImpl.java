@@ -26,14 +26,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * <p>
- * 服务实现类
- * </p>
- *
- * @author coder
- * @since 2020-04-05
- */
+
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     @Autowired
@@ -50,7 +43,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 登录成功，将token 返回前端
         Session session = ShiroUtils.getSession();
 
+
         String loginToken = (String) session.getId();
+
         return loginToken;
     }
 

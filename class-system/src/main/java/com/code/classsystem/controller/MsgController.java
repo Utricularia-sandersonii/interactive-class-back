@@ -12,14 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author coder
- * @since 2020-05-10
- */
+
 @RestController
 @RequestMapping("/msg")
 @Api(value = "课堂讨论消息接口", tags = "课堂讨论消息接口")
