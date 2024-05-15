@@ -100,7 +100,25 @@ public class UserController {
     @PostMapping("/webLogin")
     @ApiOperation(value = "用户登录接口", notes = "用户登录接口")
     public ResponseResult webLogin(@Valid UserLoginVo userLoginVo) {
-        return this.login(userLoginVo);
+
+        String token;
+        try {
+            String userAccount = userLoginVo.getUserAccount();
+            token = userService.login(userAccount, userLoginVo.getPassword());
+
+            User loginUser = userService.getByUserAccount(userAccount);
+            if (loginUser.getRoleId() == 1){
+                return ResponseResultUtil.renderError(ErrorEnum.USER_PASSWORD_ERROR.setMsg("权限不足"));
+            }
+        } catch (Exception e) {
+            if (e instanceof AuthenticationException) {
+                e = (Exception) e.getCause();
+            }
+            return ResponseResultUtil.renderError(ErrorEnum.USER_PASSWORD_ERROR.setMsg(e.getMessage()));
+        }
+        return ResponseResultUtil.renderSuccess(token);
+
+
     }
 
 
