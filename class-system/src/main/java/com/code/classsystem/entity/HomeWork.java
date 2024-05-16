@@ -42,7 +42,15 @@ public class HomeWork implements Serializable {
      */
     private Integer downloadNum;
     private String lastDownTime;
+    private String workId;
 
+    public String getWorkId() {
+        return workId;
+    }
+
+    public void setWorkId(String workId) {
+        this.workId = workId;
+    }
 
     public String getId() {
         return id;

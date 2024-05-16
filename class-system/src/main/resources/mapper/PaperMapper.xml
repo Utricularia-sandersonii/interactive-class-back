@@ -31,7 +31,7 @@
     </select>
 
     <select id="queryMyPaper" resultType="com.code.classsystem.entity.Paper" parameterType="String">
-        SELECT paper.*
+        SELECT DISTINCT paper.*
             from paper 	left join course c1 on c1.id=paper.course_id
 			LEFT JOIN class_course c2 on c2.course_id=c1.id
             LEFT join class_user on class_user.class_id=c2.class_id

@@ -15,6 +15,7 @@
         <result column="class_id" property="classId" />
         <result column="download_num" property="downloadNum" />
         <result column="last_down_time" property="lastDownTime" />
+        <result column="work_id" property="workId" />
     </resultMap>
 
     <!-- extends="BaseResultMap"， HomeWorkVoResultMap 继承 BaseResultMap   -->
@@ -25,7 +26,7 @@
     </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, work_title, work_des, attach_path, student_id, submit_time, teacher_id, course_id, class_id, download_num, last_down_time
+        id, work_title, work_des, attach_path, student_id, submit_time, teacher_id, course_id, class_id, download_num, last_down_time,work_id
     </sql>
 
     <select id="listPage" resultMap="HomeWorkVoResultMap" parameterType="com.code.classsystem.entity.HomeWork">
@@ -49,6 +50,9 @@
             </if>
             <if test="teacherId != null">
                and h.teacher_id = #{teacherId}
+            </if>
+            <if test="workId != null">
+                and h.work_id = #{workId}
             </if>
         </where>
 

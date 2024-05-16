@@ -23,6 +23,10 @@ public class MsgController {
     @GetMapping("/listLastN")
     public ResponseResult listLastN(String classId,@RequestParam(defaultValue = "20") int n){
       List<Msg> msgList = msgService.listLastN(classId,n);
+        for (Msg msg : msgList) {
+            msg.setUserName(msg.getSendName());
+            msg.setUserId(msg.getSendId());
+        }
       return ResponseResultUtil.renderSuccess(msgList);
     }
 }

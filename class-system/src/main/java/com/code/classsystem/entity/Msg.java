@@ -1,5 +1,6 @@
 package com.code.classsystem.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
 
@@ -35,6 +36,26 @@ public class Msg implements Serializable {
      */
     private String toId;
 
+    @TableField(exist = false)
+    private String userName;
+    @TableField(exist = false)
+    private String userId;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getId() {
         return id;

@@ -1,5 +1,6 @@
 package com.code.classsystem.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
 
@@ -23,7 +24,26 @@ public class Notice implements Serializable {
     private String publishUserId;
     private String classId;
     private String courseId;
+    @TableField(exist = false)
+    private String coursename;
+    @TableField(exist = false)
+    private String classname;
 
+    public String getCoursename() {
+        return coursename;
+    }
+
+    public void setCoursename(String coursename) {
+        this.coursename = coursename;
+    }
+
+    public String getClassname() {
+        return classname;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
 
     public String getId() {
         return id;

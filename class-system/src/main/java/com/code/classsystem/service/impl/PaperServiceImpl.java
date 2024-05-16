@@ -65,7 +65,7 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
     public List<Paper> queryMyPaper(int pageNum, int pageSize) {
         String userId=ShiroUtils.getUserId();
         PageHelper.startPage(pageNum, pageSize);
-        List<Paper>papers=paperMapper.queryMyPaper(userId);
+        List<Paper> papers=paperMapper.queryMyPaper(userId);
         return new PageInfo<Paper>(papers).getList();
     }
 

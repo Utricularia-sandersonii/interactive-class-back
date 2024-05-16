@@ -70,7 +70,7 @@ public class UserRealm extends AuthorizingRealm {
             logger.error("用户名错误：{}", userName);
             throw new AuthenticationFailException(ErrorEnum.USER_NAME_ERROR.setMsg("用户名" + userName + "不存在"));
         }
-
+//
 //        for (int i = 0; i < stackTraceElements.length; i++) {
 //            if (stackTraceElements[i].getMethodName().equals("webLogin")||user.getRoleId()==1){
 //                throw new AuthenticationFailException(ErrorEnum.USER_NAME_ERROR.setMsg("用户" + userName + "权限不足"));

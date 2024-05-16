@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.code.classsystem.dao.WorkMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.code.classsystem.entity.Work">
+        <id column="id" property="id" />
+        <result column="work_title" property="workTitle" />
+        <result column="work_des" property="workDes" />
+        <result column="answer_begin_time" property="answerBeginTime" />
+        <result column="answer_end_time" property="answerEndTime" />
+        <result column="publish_user_id" property="publishUserId" />
+        <result column="publish_time" property="publishTime" />
+        <result column="class_id" property="classId" />
+        <result column="course_id" property="courseId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, work_title, work_des, answer_begin_time, answer_end_time, publish_user_id, publish_time, class_id,course_id
+    </sql>
+
+    <select id="listPage" resultType="com.code.classsystem.vo.WorkInfoVo" parameterType="com.code.classsystem.entity.Work">
+          SELECT work.id ,course.course_name,class.class_name,work.work_name,work.work_time,work.work_score
+            from work
+            left join course on course.id=work.course_id
+            LEFT join class on class.id=work.class_id
+          WHERE work.publish_user_id=#{publishUserId}
+    </select>
+
+    <select id="queryMyWork" resultType="com.code.classsystem.entity.Work" parameterType="String">
+        SELECT DISTINCT work.*
+            from work 	left join course c1 on c1.id=work.course_id
+			LEFT JOIN class_course c2 on c2.course_id=c1.id
+            LEFT join class_user on class_user.class_id=c2.class_id
+        WHERE class_user.member_id=#{userId}
+    </select>
+
+    <select id="queryWorkResult" resultType="com.code.classsystem.vo.WorkResultBinVo" parameterType="String">
+        select work_id,id,class_name,courseId,IFNULL((get_score/total_score),0) good_rate from (
+                    select p3.id work_id,c2.id,c2.class_name,sum(p1.score) total_score,sum(p2.score) get_score,c5.course_id courseId
+                                from work_question p1  left join user_question p2 on p1.id=p2.question_id
+                                left join class_user c1 on c1.member_id=p2.user_id
+                                right JOIN class c2 on c2.id=c1.class_id
+																left JOIN class_course c5 on c5.class_id=c2.id and c5.class_id=c2.id
+                                left join work p3 on p3.id=p1.work_id and p3.course_id=c5.course_id
+                                LEFT join course c3 on c3.id=p3.course_id
+                   WHERE  c5.course_id=#{courseId}
+				GROUP BY c2.id,c2.class_name,p1.work_id,c5.course_id )a
+    </select>
+
+</mapper>

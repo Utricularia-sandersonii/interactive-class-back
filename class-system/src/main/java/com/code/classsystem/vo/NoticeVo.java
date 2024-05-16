@@ -6,6 +6,16 @@ public class NoticeVo  extends Notice {
    private int page;
     private int limit;
 
+    private String currentUserId;
+
+    public String getCurrentUserId() {
+        return currentUserId;
+    }
+
+    public void setCurrentUserId(String currentUserId) {
+        this.currentUserId = currentUserId;
+    }
+
     public int getPage() {
         return page;
     }
