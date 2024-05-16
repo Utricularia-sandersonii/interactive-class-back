@@ -89,6 +89,9 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
     @Override
     public boolean delPaper(String paperId) {
 
+        Integer flag = paperMapper.deleteById(paperId);
+        if (flag!=0)
+            return true;
         return false;
     }
 }
