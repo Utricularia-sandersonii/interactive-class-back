@@ -1,11 +1,17 @@
 package com.code.classsystem.controller;
 
+import com.code.classsystem.dao.ClassMapper;
+import com.code.classsystem.dao.CourseMapper;
+import com.code.classsystem.entity.Class;
+import com.code.classsystem.entity.Course;
 import com.code.classsystem.entity.Paper;
 import com.code.classsystem.service.PaperService;
+import com.code.classsystem.vo.PagerVo;
 import com.code.classsystem.vo.PaperInfoVo;
 import com.code.classsystem.vo.PaperResultBinVo;
 import com.code.classsystem.vo.PaperVo;
 import com.code.core.entity.ResponseResult;
+import com.code.core.enums.ErrorEnum;
 import com.code.core.util.ResponseResultUtil;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -24,11 +30,44 @@ public class PaperController {
 
     @Autowired
     private PaperService paperService;
+
+    @Autowired
+    private ClassMapper classMapper;
+
+    @Autowired
+    private CourseMapper courseMapper;
+
     @ApiOperation(value = "创建试卷接口", notes = "创建试卷接口")
     @PostMapping("/createPaper")
     public ResponseResult createPaper(Paper paper) {
         paperService.createPaper(paper);
         return ResponseResultUtil.renderSuccessMsg("创建试卷成功！");
+    }
+
+
+    @ApiOperation(value = "创建试卷接口", notes = "创建试卷接口")
+    @PostMapping("/WebCreatePaper")
+    public ResponseResult WebCreatePaper(PaperInfoVo pagerVo) {
+
+        Class tempClass = new Class();
+        Course course = new Course();
+
+        tempClass.setClassName(pagerVo.getClassName());
+        course.setCourseName(pagerVo.getCourseName());
+
+
+        String classId = classMapper.selectOne(tempClass).getId();
+        String courseId = courseMapper.selectOne(course).getId();
+
+        if (classId != null || courseId != null){
+            Paper paper = pagerVo;
+            paper.setClassId(classId);
+            paper.setCourseId(courseId);
+            paperService.createPaper(paper);
+            return ResponseResultUtil.renderSuccessMsg("创建试卷成功！");
+        }
+
+        return ResponseResultUtil.renderError(ErrorEnum.USER_PASSWORD_ERROR.setMsg("添加失败"));
     }
 
     @ApiOperation(value = "查询试卷接口", notes = "查询试卷接口")
