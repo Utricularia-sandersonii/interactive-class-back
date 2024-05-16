@@ -56,8 +56,14 @@ public class PaperController {
         course.setCourseName(pagerVo.getCourseName());
 
 
-        String classId = classMapper.selectOne(tempClass).getId();
-        String courseId = courseMapper.selectOne(course).getId();
+        String classId = null;
+        String courseId = null;
+        try {
+            classId = classMapper.selectOne(tempClass).getId();
+            courseId = courseMapper.selectOne(course).getId();
+        } catch (Exception e) {
+           return ResponseResultUtil.renderError(ErrorEnum.USER_PASSWORD_ERROR.setMsg("课程错误"));
+        }
 
         if (classId != null || courseId != null){
             Paper paper = pagerVo;
@@ -84,6 +90,7 @@ public class PaperController {
     @RequestMapping("/listPage")
     public ResponseResult listPage(Paper paper,@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize) {
         PageInfo<PaperInfoVo> paperInfoVoList=paperService.listPage(paper,pageNum,pageSize);
+        System.out.println("paperInfoVoList====================="+paperInfoVoList);
         return ResponseResultUtil.renderSuccess(paperInfoVoList, "退分页查找试卷成功");
     }
 
@@ -108,7 +115,7 @@ public class PaperController {
     @RequestMapping("/delPaper")
     public ResponseResult delPaper(String paperId) {
         paperService.delPaper(paperId);
-        return ResponseResultUtil.renderSuccess("");
+        return ResponseResultUtil.renderSuccess("删除成功");
     }
 
 

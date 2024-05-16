@@ -73,8 +73,9 @@ public class ClassController {
     @ApiOperation(value = "分页查询班级", notes = "分页查询班级")
     @GetMapping("/listPage")
     @RequiresRoles(value  ={"teacher","admin"},logical = Logical.OR)
-    public ResponseResult listPage(ClassSearchVo searchVo, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize) {
+    public ResponseResult listPage(ClassSearchVo searchVo, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize) {
         PageInfo<ClassVo> classVoPageInfo = classService.listPage(searchVo, pageNum, pageSize);
+
         return ResponseResultUtil.renderSuccess(classVoPageInfo);
     }
 

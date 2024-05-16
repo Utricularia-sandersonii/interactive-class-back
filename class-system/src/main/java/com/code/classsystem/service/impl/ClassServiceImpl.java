@@ -83,6 +83,7 @@ public class ClassServiceImpl extends ServiceImpl<ClassMapper, Class> implements
             String userId = userEntity.getId();
             searchVo.setCreatorId(userId);
         }
+
         PageHelper.startPage(pageNum, pageSize);
         List<ClassVo> userInfoVos = classMapper.listPage(searchVo);
         return new PageInfo<>(userInfoVos);
