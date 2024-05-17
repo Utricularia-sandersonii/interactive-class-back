@@ -93,12 +93,17 @@
 
     <select id="listPage" parameterType="com.code.classsystem.entity.Course" resultMap="CourseInfoMap">
         select c1.*,
-        cls.class_name ,cls.class_num,
-       pptr.id as pptR_id,  pptr.course_resource_name as pptR_course_resource_name,
-        pptr.resource_path as pptR_resource_path,pptr.resource_type as pptR_resource_type,
 
-        vr.id as vr_id,  vr.course_resource_name as vr_course_resource_name,
-        vr.resource_path as vr_resource_path, vr.resource_type as vr_resource_type
+        GROUP_CONCAT(DISTINCT cls.class_name ORDER BY cls.class_name SEPARATOR ',') AS class_name,
+        GROUP_CONCAT(DISTINCT cls.class_num ORDER BY cls.class_name SEPARATOR ',') AS class_num,
+        MAX(pptr.id) AS pptR_id,
+        MAX(pptr.course_resource_name) AS pptR_course_resource_name,
+        MAX(pptr.resource_path) AS pptR_resource_path,
+        MAX(pptr.resource_type) AS pptR_resource_type,
+        MAX(vr.id) AS vr_id,
+        MAX(vr.course_resource_name) AS vr_course_resource_name,
+        MAX(vr.resource_path) AS vr_resource_path,
+        MAX(vr.resource_type) AS vr_resource_type
          from course c1
           left join class_course cc on c1.id = cc.course_id
 		  left join class cls on cls.id = cc.class_id
@@ -110,7 +115,8 @@
                 c1.created_user_id = #{createdUserId}
             </if>
         </where>
-        order by c1.course_name, cls.class_name
+        GROUP BY c1.course_name
+        order by  c1.course_name
     </select>
 
     <select id="getDetailById" parameterType="string" resultMap="CourseInfoMap">
