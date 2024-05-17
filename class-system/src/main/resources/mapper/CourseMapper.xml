@@ -93,7 +93,6 @@
 
     <select id="listPage" parameterType="com.code.classsystem.entity.Course" resultMap="CourseInfoMap">
         select c1.*,
-
         GROUP_CONCAT(DISTINCT cls.class_name ORDER BY cls.class_name SEPARATOR ',') AS class_name,
         GROUP_CONCAT(DISTINCT cls.class_num ORDER BY cls.class_name SEPARATOR ',') AS class_num,
         MAX(pptr.id) AS pptR_id,
