@@ -4,14 +4,12 @@ package com.code.classsystem.controller;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.code.classsystem.common.shiro.util.ShiroUtils;
+import com.code.classsystem.entity.*;
 import com.code.classsystem.entity.Class;
-import com.code.classsystem.entity.Course;
-import com.code.classsystem.entity.Notice;
-import com.code.classsystem.service.ClassService;
-import com.code.classsystem.service.ClassUserService;
-import com.code.classsystem.service.CourseService;
-import com.code.classsystem.service.NoticeService;
+import com.code.classsystem.service.*;
 import com.code.classsystem.vo.NoticeVo;
+import com.code.classsystem.vo.PaperVo;
+import com.code.classsystem.vo.WorkVo;
 import com.code.core.entity.ResponseResult;
 import com.code.core.util.ResponseResultUtil;
 import io.swagger.annotations.Api;
@@ -42,9 +40,40 @@ public class NoticeController {
     private ClassService classService;
     @Autowired
     private CourseService courserService;
+    @Autowired
+    private WorkService workService;
+    @Autowired
+    private PaperService paperService;
     @ApiOperation(value = "添加通知接口", notes = "添加通知接口")
     @PostMapping("/addNotice")
     public ResponseResult addNotice(Notice notice) {
+        notice.setPublishUserId(ShiroUtils.getUserId());
+        noticeService.addNotice(notice);
+        return ResponseResultUtil.renderSuccessMsg("创建通知成功！");
+    }
+    @ApiOperation(value = "作业提醒接口", notes = "作业提醒接口")
+    @PostMapping("/addWorkRemind")
+    public ResponseResult addWorkRemind(WorkVo workVo) {
+        Work work = workService.selectById(workVo.getId());
+        Notice notice = new Notice();
+        notice.setNoticeTitle("作业提醒通知");
+        notice.setNoticeContent("请尽快完成作业‘"+work.getWorkTitle()+"’");
+
+        notice.setClassId(work.getClassId());
+        notice.setCourseId(work.getCourseId());
+        notice.setPublishUserId(ShiroUtils.getUserId());
+        noticeService.addNotice(notice);
+        return ResponseResultUtil.renderSuccessMsg("创建通知成功！");
+    }
+    @ApiOperation(value = "试卷提醒接口", notes = "试卷提醒接口")
+    @PostMapping("/addPaperRemind")
+    public ResponseResult addPaperRemind(PaperVo paperVo) {
+        Paper paper = paperService.selectById(paperVo.getId());
+        Notice notice = new Notice();
+        notice.setNoticeTitle("试卷提醒通知");
+        notice.setNoticeContent("请尽快完成试卷‘"+paper.getPaperName()+"’");
+        notice.setClassId(paper.getClassId());
+        notice.setCourseId(paper.getCourseId());
         notice.setPublishUserId(ShiroUtils.getUserId());
         noticeService.addNotice(notice);
         return ResponseResultUtil.renderSuccessMsg("创建通知成功！");

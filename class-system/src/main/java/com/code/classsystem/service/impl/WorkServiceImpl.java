@@ -40,7 +40,12 @@ public class WorkServiceImpl extends ServiceImpl<WorkMapper, Work> implements Wo
     public List<Work> queryWork(Work work, int page, int limit) {
         Page<Work> workPage=new Page<>(page,limit);
         EntityWrapper<Work> wrapper=new EntityWrapper<>();
-        wrapper.eq("course_id",work.getCourseId());
+        if(work.getId()!=null){
+            wrapper.eq("id",work.getId());
+        }
+        if (work.getCourseId()!=null){
+            wrapper.eq("course_id",work.getCourseId());
+        }
         wrapper.orderBy("publish_time",false);
         List<Work>list=this.selectPage(workPage,wrapper).getRecords();
         return list;

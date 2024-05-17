@@ -41,7 +41,13 @@ public class WorkController {
         List<Work> data = workService.queryWork(work, page, limit);
         return ResponseResultUtil.renderSuccess(data);
     }
+    @ApiOperation(value = "查询作业接口", notes = "查询作业接口")
+    @PostMapping("/queryWorkById")
+    public ResponseResult queryWorkById(@RequestBody WorkVo workVo) {
+        Work work = workService.selectById(workVo.getId());
 
+        return ResponseResultUtil.renderSuccess(work);
+    }
     @RequestMapping("/listPage")
     public ResponseResult listPage(Work work,@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize) {
         PageInfo<WorkInfoVo> workInfoVoList=workService.listPage(work,pageNum,pageSize);
